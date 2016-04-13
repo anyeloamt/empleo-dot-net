@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Company.cs" />
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\JobOpportunity.cs" />

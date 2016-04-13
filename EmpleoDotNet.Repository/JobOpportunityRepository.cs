@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
@@ -26,16 +27,18 @@ namespace EmpleoDotNet.Repository
 
         public List<JobOpportunity> GetRelatedJobs(int id, string name)
         {
-            var relatedJobs = DbSet
-                .Where(
-                    x =>
-                        x.Id != id &&
-                        (x.CompanyName.Equals(name,System.StringComparison.InvariantCultureIgnoreCase) 
-                        )).OrderByDescending(x =>x.ViewCount)
-                        .Take(5)
-                        .ToList();
+            //var relatedJobs = DbSet
+            //    .Where(
+            //        x =>
+            //            x.Id != id &&
+            //            (x.CompanyName.Equals(name,System.StringComparison.InvariantCultureIgnoreCase) 
+            //            )).OrderByDescending(x =>x.ViewCount)
+            //            .Take(5)
+            //            .ToList();
 
-            return relatedJobs;
+            //return relatedJobs;
+
+            throw new NotImplementedException();
         }
 
         public List<JobCategoryCountDto> GetMainJobCategoriesCount()

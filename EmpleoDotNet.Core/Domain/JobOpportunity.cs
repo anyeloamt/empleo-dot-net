@@ -27,26 +27,6 @@ namespace EmpleoDotNet.Core.Domain
         public string Description { get; set; }
 
         /// <summary>
-        /// Nombre de la compañía
-        /// </summary>
-        public string CompanyName { get; set; }
-
-        /// <summary>
-        /// Dirección Website de la empresa
-        /// </summary>
-        public string CompanyUrl { get; set; }
-
-        /// <summary>
-        /// E-mail de contacto de la empresa
-        /// </summary>
-        public string CompanyEmail { get; set; }
-
-        /// <summary>
-        /// Logo de la empresa
-        /// </summary>
-        public string CompanyLogoUrl { get; set; }
-
-        /// <summary>
         /// Fecha de publicación. 
         /// </summary>
         /// <remarks>
@@ -81,12 +61,12 @@ namespace EmpleoDotNet.Core.Domain
         public bool IsActive { get; set; } = true;
 
         public int? JobOpportunityLocationId { get; set; }
-
-        public int? UserProfileId { get; set; } 
         /// <summary>
         /// para especificar la forma de como se aplica para el empleo
         /// </summary>
         public string HowToApply { get; set; }
+
+        public int? CompanyId { get; set; }
 
         #endregion
 
@@ -98,11 +78,11 @@ namespace EmpleoDotNet.Core.Domain
 
         public JobOpportunityLocation JobOpportunityLocation { get; set; }
 
-        public virtual UserProfile UserProfile { get; set; }
-
         public Location Location { get; set; }
 
         public List<JobOpportunityLike> JobOpportunityLikes { get; set; }
+
+        public Company Company { get; set; }
 
         #endregion
     }
