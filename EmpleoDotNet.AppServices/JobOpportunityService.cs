@@ -2,6 +2,7 @@
 using System.Linq;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
+using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
 using PagedList;
 
@@ -9,16 +10,16 @@ namespace EmpleoDotNet.AppServices
 {
     public class JobOpportunityService : IJobOpportunityService
     {
-        public void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userid)
+        public void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userId)
         {
-            //jobOpportunity.UserProfile = _userProfileRepository.GetByUserId(userid);
+            jobOpportunity.Company = _companyRepository.GetCompanyByUserId(userId);
             _jobOpportunityRepository.Add(jobOpportunity);
             _jobOpportunityRepository.SaveChanges();
         }
 
-        public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name)
+        public List<JobOpportunity> GetCompanyRelatedJobs(int id, int companyId)
         {
-            var result = _jobOpportunityRepository.GetRelatedJobs(id,name);
+            var result = _jobOpportunityRepository.GetRelatedJobs(id, companyId);
 
             return result;
         }
@@ -51,14 +52,13 @@ namespace EmpleoDotNet.AppServices
 
         public JobOpportunityService(
             IJobOpportunityRepository jobOpportunityRepository,
-            IUserProfileRepository userProfileRepository
-            )
+            ICompanyRepository companyRepository)
         {
             _jobOpportunityRepository = jobOpportunityRepository;
-            _userProfileRepository = userProfileRepository;
+            _companyRepository = companyRepository;
         }
 
         private readonly IJobOpportunityRepository _jobOpportunityRepository;
-        private readonly IUserProfileRepository _userProfileRepository;
+        private readonly ICompanyRepository _companyRepository;
     }
 }

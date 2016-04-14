@@ -6,7 +6,7 @@
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
-    ViewBag.ImageUrl = Model.CompanyLogoUrl;
+    ViewBag.ImageUrl = Model.Company.CompanyLogoUrl;
 }
 @section scripts
 {
@@ -59,7 +59,7 @@
                     }
                     else {
                         <p>
-                            Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+                            Enviar CV <a href="mailto:@Model.Company.CompanyEmail">@Model.Company.CompanyEmail</a>
                         </p>
                     }
                    
@@ -105,19 +105,19 @@
                 <div class="sidebar-widget" id="company">
                     <h2>Sobre la Compañía</h2>
 
-                    <a href="@Model.CompanyUrl">
-                        @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
+                    <a href="@Model.Company.CompanyUrl">
+                        @if (string.IsNullOrWhiteSpace(@Model.Company.CompanyLogoUrl))
                         {
                             <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañ&iacute;a" class="img-company img-responsive" />
                         }
                         else
                         {
-                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="img-company img-responsive">
+                            <img src="@Model.Company.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="img-company img-responsive">
                         }
                     </a>
-                    <h5>@Model.CompanyName</h5>
+                    <h5>@Model.Company.CompanyName</h5>
                     <p>
-                        <a href="@Model.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
+                        <a href="@Model.Company.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
                     </p>
                 </div>
 

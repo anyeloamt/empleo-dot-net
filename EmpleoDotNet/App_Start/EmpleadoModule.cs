@@ -33,6 +33,7 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<IJobOpportunityLikeService>().To<JobOpportunityLikeService>();
             Kernel.Bind<IJobOpportunityLikeRepository>().To<JobOpportunityLikeRepository>();
+            Kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
         }
     }
 }

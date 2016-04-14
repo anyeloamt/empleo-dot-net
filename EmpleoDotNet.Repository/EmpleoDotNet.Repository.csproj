@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="CompanyRepository.cs" />
     <Compile Include="Contracts\IBaseRepository.cs" />
     <Compile Include="Contracts\IJobOpportunityRepository.cs" />
     <Compile Include="Contracts\ITagRepository.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Contracts\IUserProfileRepository.cs" />
     <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="Contracts\IJobOpportunityLikeRepository.cs" />
+    <Compile Include="Contracts\ICompanyRepository.cs" />
     <Compile Include="JobOpportunityLikeRepository.cs" />
     <Compile Include="JobOpportunityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

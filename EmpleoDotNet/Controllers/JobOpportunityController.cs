@@ -59,8 +59,9 @@ namespace EmpleoDotNet.Controllers
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
 
-            //ViewBag.RelatedJobs =
-            //    _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, viewModel.CompanyName);
+            // TODO: CompanyId shouldn't be nullable.
+            ViewBag.RelatedJobs = 
+                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, (int)viewModel.CompanyId);
 
             ViewBag.CanLike = !CookieHelper.Exists(GetLikeCookieName(jobOpportunityId));
 

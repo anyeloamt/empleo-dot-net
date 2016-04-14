@@ -25,20 +25,14 @@ namespace EmpleoDotNet.Repository
             return jobOpportunities.ToList();
         }
 
-        public List<JobOpportunity> GetRelatedJobs(int id, string name)
+        public List<JobOpportunity> GetRelatedJobs(int id, int companyId)
         {
-            //var relatedJobs = DbSet
-            //    .Where(
-            //        x =>
-            //            x.Id != id &&
-            //            (x.CompanyName.Equals(name,System.StringComparison.InvariantCultureIgnoreCase) 
-            //            )).OrderByDescending(x =>x.ViewCount)
-            //            .Take(5)
-            //            .ToList();
-
-            //return relatedJobs;
-
-            throw new NotImplementedException();
+            var relatedJobs = DbSet.Where(x => x.Id != id && x.CompanyId == companyId)
+                 .OrderByDescending(x => x.ViewCount)
+                 .Take(5)
+                 .ToList();
+            
+            return relatedJobs;
         }
 
         public List<JobCategoryCountDto> GetMainJobCategoriesCount()
@@ -65,6 +59,7 @@ namespace EmpleoDotNet.Repository
             return DbSet.Include(x => x.JobOpportunityLocation)
                         .Include(x => x.JoelTest)
                         .Include(x => x.JobOpportunityLikes)
+                        .Include(x => x.Company)
                         .FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
@@ -85,7 +80,8 @@ namespace EmpleoDotNet.Repository
 
             var jobs = DbSet
                 .Include(x => x.JobOpportunityLocation)
-                .Include(x => x.JobOpportunityLikes);
+                .Include(x => x.JobOpportunityLikes)
+                .Include(x => x.Company);
 
             jobs = jobs.OrderByDescending(x => x.Id);
             
@@ -163,6 +159,7 @@ namespace EmpleoDotNet.Repository
             return GetAll().OrderByDescending(m => m.PublishedDate)
                 .Include(m => m.JobOpportunityLocation)
                 .Include(x => x.JobOpportunityLikes)
+                .Include(x => x.Company)
                 .Take(quantity)
                 .ToList();
         }
