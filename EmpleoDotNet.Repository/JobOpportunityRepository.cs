@@ -93,6 +93,7 @@ namespace EmpleoDotNet.Repository
                 jobs = jobs.Where(x => x.IsRemote);
 
             //Filter using FTS if keyword is not empty
+            //TODO: Add FTS for Company properties 
             if (!string.IsNullOrWhiteSpace(parameter.Keyword))
                 jobs = jobs.FullTextSearch(parameter.Keyword);
 

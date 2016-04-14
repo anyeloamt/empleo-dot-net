@@ -21,15 +21,11 @@
 }
 
     .tab.section-1 {
-        left: 10%;
+        left: 25%;
     }
 
     .tab.section-2 {
-        left: 45%;
-    }
-
-    .tab.section-3 {
-        left: 80%;
+        left: 75%;
     }
 
     .tab.active {
@@ -42,8 +38,7 @@
     }
 
     .tab.section-1,
-    .tab.section-2,
-    .tab.section-3 {
+    .tab.section-2 {
         display: none;
     }
 

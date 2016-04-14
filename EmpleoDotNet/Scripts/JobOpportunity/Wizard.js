@@ -2,7 +2,7 @@
 
 var Wizard = function () {
     var currentSection = 0;
-    var sections = ["INFORMACIÓN DE LA EMPRESA", "INFORMACIÓN DEL PUESTO", "LA PRUEBA DE JOEL"];
+    var sections = ["INFORMACIÓN DEL PUESTO", "LA PRUEBA DE JOEL"];
     var owl = $("#wizard").owlCarousel({
         slideSpeed: 300,
         paginationSpeed: 400,

@@ -28,25 +28,9 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         [Display(Name = "Requisitos para aplicar")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "El nombre de la empresa es requerido."), StringLength(50)]
-        [Display(Name = "Nombre")]
-        public string CompanyName { get; set; }
-
-        [StringLength(int.MaxValue), Url(ErrorMessage = "La dirección Web de la compañia debe ser un Url válido.")]
-        [Display(Name = "Sitio Web (opcional)")]
-        public string CompanyUrl { get; set; }
-
-        [Required(ErrorMessage = "El campo correo electrónico es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Correo electrónico inválido.")]
-        [Display(Name = "Correo electrónico"),]
-        public string CompanyEmail { get; set; }
-
         [Required(ErrorMessage = "El campo como aplicar es requerido"), StringLength(int.MaxValue)]
         [Display(Name = "Cómo Aplicar")]
         public string HowToApply { get; set; }
-
-        [StringLength(int.MaxValue), Url(ErrorMessage = "El logo de la compañía debe ser un Url válido.")]
-        [Display(Name = "Logo (opcional)")]
-        public string CompanyLogoUrl { get; set; }
 
         [Display(Name= "¿Es un puesto remoto?")]
         public bool IsRemote { get; set; }
@@ -95,10 +79,6 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                 Title = Title,
                 Category = Category,
                 Description = Description,
-                //CompanyName = CompanyName,
-                //CompanyUrl = CompanyUrl,
-                //CompanyLogoUrl = CompanyLogoUrl,
-                //CompanyEmail = CompanyEmail,
                 PublishedDate = DateTime.Now,
                 IsRemote = IsRemote,
                 JobType = JobType,
