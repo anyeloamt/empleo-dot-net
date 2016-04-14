@@ -271,6 +271,7 @@
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Code\EmpleoDotNetHttpContext.cs" />
     <Compile Include="Code\TrimModelBinder.cs" />
+    <Compile Include="Filters\CompanyUserAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

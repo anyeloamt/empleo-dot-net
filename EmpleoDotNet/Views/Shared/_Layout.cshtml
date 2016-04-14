@@ -76,9 +76,24 @@
                 </div>
             </div>
             <div class="pull-right hidden-xs">
-                <div>
-                    <a class="btn btn-default" href="@Url.Action("New", "JobOpportunity")"><i class="fa fa-user"></i> Publicar un Empleo</a>
-                </div>
+                @if (User == null || !User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <a class="btn btn-default" href="@Url.Action("Login", "Account")">
+                            <i class="fa fa-sign-in"></i> 
+                            Iniciar sesión
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="btn btn-default" href="@Url.Action("LogOff", "Account")">
+                            <i class="fa fa-sign-out"></i>
+                            Cerrar sesión
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </header>

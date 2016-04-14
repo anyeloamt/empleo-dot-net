@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EmpleoDotNet.Data.Migrations
 {
-    public sealed class Configuration : DbMigrationsConfiguration<EmpleadoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EmpleadoContext>
     {
         public Configuration()                   
         {
@@ -32,7 +32,8 @@ namespace EmpleoDotNet.Data.Migrations
                     Created = DateTime.Now,
                     Email = "prueba@developers.do",
                     Name = "Developers DO",
-                    UserId = user1.Id
+                    UserId = user1.Id,
+                    UserType = UserType.Company
                 },
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
@@ -47,7 +48,8 @@ namespace EmpleoDotNet.Data.Migrations
                     Created = DateTime.Now,
                     Email = "prueba@developers.do",
                     Name = "Developers DO Santiago",
-                    UserId = user1.Id
+                    UserId = user1.Id,
+                    UserType = UserType.Company
                 },
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",

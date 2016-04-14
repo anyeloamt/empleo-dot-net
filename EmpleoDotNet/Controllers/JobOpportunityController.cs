@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Filters;
 using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
 
@@ -76,8 +77,8 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpGet]
-
         [Authorize]
+        [CompanyUser]
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
@@ -90,6 +91,7 @@ namespace EmpleoDotNet.Controllers
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
         [Authorize]
+        [CompanyUser]
         public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
         {
             if (!ModelState.IsValid)
@@ -117,6 +119,8 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+        [CompanyUser]
         public ActionResult Wizard()
         {
             var viewModel = new Wizard();
@@ -127,6 +131,8 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot", ErrorMessage = "El captcha es incorrecto.")]
+        [Authorize]
+        [CompanyUser]
         public async Task<ActionResult> Wizard(Wizard model)
         {
             if (!ModelState.IsValid)
