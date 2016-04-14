@@ -16,7 +16,27 @@ namespace EmpleoDotNet.Core.Domain
 
         public string CompanyLogoUrl { get; set; }
 
+        public string CompanyDescription { get; set; }
+
+        public string CompanyPhone { get; set; }
+
+        public string CompanyVideoUrl { get; set; }
+
         public int? UserProfileId { get; set; }
+
+        #region Social
+
+        public string FacebookProfile { get; set; }
+
+        public string TwitterProfile { get; set; }
+
+        public string LinkedInProfile { get; set; }
+
+        public string InstagramProfile { get; set; }
+
+        public string YoutubeProfile { get; set; }
+
+        #endregion
 
         #region Navigation properties
 

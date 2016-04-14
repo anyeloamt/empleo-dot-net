@@ -12,6 +12,8 @@ namespace EmpleoDotNet.Core.Domain
         public string Name { get; set; }
         public string Email { get; set; }
 
+        public UserType UserType { get; set; }
+
         public List<Company> Companies { get; set; }
     }
 }

@@ -137,6 +137,14 @@
     <Compile Include="Migrations\201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
       <DependentUpon>201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.cs" />
+    <Compile Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.Designer.cs">
+      <DependentUpon>201604141440060_AddExtraPropertiesToCompanyTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604141555178_AddUserTypeToUserProfile.cs" />
+    <Compile Include="Migrations\201604141555178_AddUserTypeToUserProfile.Designer.cs">
+      <DependentUpon>201604141555178_AddUserTypeToUserProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -199,6 +207,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
       <DependentUpon>201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.resx">
+      <DependentUpon>201604141440060_AddExtraPropertiesToCompanyTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604141555178_AddUserTypeToUserProfile.resx">
+      <DependentUpon>201604141555178_AddUserTypeToUserProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
