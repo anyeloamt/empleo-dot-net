@@ -39,9 +39,9 @@
                         <div>
                             <h2>Mis ofertas de empleo</h2>
                         </div>
-                        @if (Model.Companies.Any(x => x.JobOpportunities.Any()))
+                        @if (Model.Company.JobOpportunities.Any())
                         {
-                            @Html.Partial("_JobListPartial", Model.Companies.SelectMany(c => c.JobOpportunities))
+                            @Html.Partial("_JobListPartial", Model.Company.JobOpportunities)
                         }
                         else
                         {
