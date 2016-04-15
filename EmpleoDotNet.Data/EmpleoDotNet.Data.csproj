@@ -129,21 +129,17 @@
     <Compile Include="Migrations\201603301645403_AddedHowToApplyField.Designer.cs">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130116135_AddCompanyTable.cs" />
-    <Compile Include="Migrations\201604130116135_AddCompanyTable.Designer.cs">
-      <DependentUpon>201604130116135_AddCompanyTable.cs</DependentUpon>
+    <Compile Include="Migrations\201604151849221_AddCompanyTable.cs" />
+    <Compile Include="Migrations\201604151849221_AddCompanyTable.Designer.cs">
+      <DependentUpon>201604151849221_AddCompanyTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.cs" />
-    <Compile Include="Migrations\201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
-      <DependentUpon>201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
+    <Compile Include="Migrations\201604151851527_RemoveCompanyPropertiesFromJobOpportunityTable.cs" />
+    <Compile Include="Migrations\201604151851527_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
+      <DependentUpon>201604151851527_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.cs" />
-    <Compile Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.Designer.cs">
-      <DependentUpon>201604141440060_AddExtraPropertiesToCompanyTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604141555178_AddUserTypeToUserProfile.cs" />
-    <Compile Include="Migrations\201604141555178_AddUserTypeToUserProfile.Designer.cs">
-      <DependentUpon>201604141555178_AddUserTypeToUserProfile.cs</DependentUpon>
+    <Compile Include="Migrations\201604151902394_AddUserProfileType.cs" />
+    <Compile Include="Migrations\201604151902394_AddUserProfileType.Designer.cs">
+      <DependentUpon>201604151902394_AddUserProfileType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,17 +198,14 @@
     <EmbeddedResource Include="Migrations\201603301645403_AddedHowToApplyField.resx">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130116135_AddCompanyTable.resx">
-      <DependentUpon>201604130116135_AddCompanyTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604151849221_AddCompanyTable.resx">
+      <DependentUpon>201604151849221_AddCompanyTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
-      <DependentUpon>201604130348204_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604151851527_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
+      <DependentUpon>201604151851527_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604141440060_AddExtraPropertiesToCompanyTable.resx">
-      <DependentUpon>201604141440060_AddExtraPropertiesToCompanyTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604141555178_AddUserTypeToUserProfile.resx">
-      <DependentUpon>201604141555178_AddUserTypeToUserProfile.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604151902394_AddUserProfileType.resx">
+      <DependentUpon>201604151902394_AddUserProfileType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

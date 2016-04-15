@@ -7,6 +7,9 @@ namespace EmpleoDotNet.Data.Migrations
     {
         public override void Up()
         {
+            // Copy company information from JobOpportunities to Companies table.
+            //SqlFile(@"..\..\SqlScripts\empleado - move company info from JobOpportunity to Company table.sql");
+
             DropForeignKey("dbo.JobOpportunities", "UserProfileId", "dbo.UserProfiles");
             DropIndex("dbo.JobOpportunities", new[] { "UserProfileId" });
             DropColumn("dbo.JobOpportunities", "CompanyName");
@@ -26,7 +29,7 @@ namespace EmpleoDotNet.Data.Migrations
             CreateIndex("dbo.JobOpportunities", "UserProfileId");
             AddForeignKey("dbo.JobOpportunities", "UserProfileId", "dbo.UserProfiles", "Id");
 
-            SqlFile(@"..\..\SqlScripts\empleado - rollback move company info from JobOpportunity to Company table.sql");
+            //SqlFile(@"..\..\SqlScripts\empleado - rollback move company info from JobOpportunity to Company table.sql");
         }
     }
 }

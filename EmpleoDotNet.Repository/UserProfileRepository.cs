@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Repository
         public UserProfile GetByUserId(string userId)
         {
             return DbSet
-                .Include(x => x.Companies.Select(c => c.JobOpportunities.Select(jo => jo.JobOpportunityLikes)))
+                .Include(x => x.Company.JobOpportunities.Select(jo => jo.JobOpportunityLikes))
                 .FirstOrDefault(x => x.UserId == userId);
         }
     }

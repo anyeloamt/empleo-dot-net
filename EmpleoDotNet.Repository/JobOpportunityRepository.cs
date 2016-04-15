@@ -31,7 +31,7 @@ namespace EmpleoDotNet.Repository
                  .OrderByDescending(x => x.ViewCount)
                  .Take(5)
                  .ToList();
-            
+
             return relatedJobs;
         }
 

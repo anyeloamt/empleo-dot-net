@@ -33,7 +33,7 @@ namespace EmpleoDotNet.Data.Migrations
                     Email = "prueba@developers.do",
                     Name = "Developers DO",
                     UserId = user1.Id,
-                    UserType = UserType.Company
+                    UserProfileType = UserProfileType.Company
                 },
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
@@ -49,7 +49,7 @@ namespace EmpleoDotNet.Data.Migrations
                     Email = "prueba@developers.do",
                     Name = "Developers DO Santiago",
                     UserId = user1.Id,
-                    UserType = UserType.Company
+                    UserProfileType = UserProfileType.Company
                 },
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",

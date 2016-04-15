@@ -11,9 +11,9 @@ namespace EmpleoDotNet.Core.Domain
         public string UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public bool IsProfileCompleted { get; set; }
 
-        public UserType UserType { get; set; }
-
-        public List<Company> Companies { get; set; }
+        public UserProfileType UserProfileType { get; set; }
+        public Company Company { get; set; }
     }
 }

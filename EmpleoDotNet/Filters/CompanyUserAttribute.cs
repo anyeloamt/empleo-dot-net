@@ -34,7 +34,7 @@ namespace EmpleoDotNet.Filters
 
             var userProfile = UserProfileRepository.GetByUserId(identity.GetUserId());
 
-            if (userProfile.UserType != UserType.Company)
+            if (userProfile.UserProfileType != UserProfileType.Company)
             {
                 // TODO: Redirect to page where the user converts its account to company type.
                 filterContext.Result = new RedirectToRouteResult(

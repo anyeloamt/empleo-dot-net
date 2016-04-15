@@ -2,7 +2,7 @@
 
 namespace EmpleoDotNet.Core.Domain
 {
-    public enum UserType
+    public enum UserProfileType
     {
         [Display(Name = "Empresa")]
         Company,

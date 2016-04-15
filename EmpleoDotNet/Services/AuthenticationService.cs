@@ -67,7 +67,7 @@ namespace EmpleoDotNet.Services
             }
 
             userProfile.UserId = user.Id;
-            userProfile.UserType = UserType.Applicant;
+            userProfile.UserProfileType = UserProfileType.Applicant;
             _userProfileRepository.Add(userProfile);
             _userProfileRepository.SaveChanges();
 
