@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,12 +8,14 @@ using System.Web.Mvc;
 using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Data;
+using EmpleoDotNet.Filters;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using EmpleoDotNet.Repository.Contracts;
+using EmpleoDotNet.ViewModel.Account;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -23,12 +26,12 @@ namespace EmpleoDotNet.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IUserProfileService _userProfileService;
 
-        public AccountController(IAuthenticationService authenticationService, IUserProfileRepository userProfileRepository, UserManager<IdentityUser> userManager)
+        public AccountController(IAuthenticationService authenticationService, IUserProfileService userProfileService, UserManager<IdentityUser> userManager)
         {
             _authenticationService = authenticationService;
-            _userProfileRepository = userProfileRepository;
+            _userProfileService = userProfileService;
             UserManager = userManager;
         }
 
@@ -213,9 +216,77 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult Profile()
         {
-            var user = _userProfileRepository.GetByUserId(this.User.Identity.GetUserId());
+            var user = _userProfileService.GetByUserId(this.User.Identity.GetUserId());
 
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult CompleteProfile(UserProfileType userProfileType)
+        {
+            var userProfile = _userProfileService.GetByUserId(User.Identity.GetUserId());
+
+            if (userProfile.IsProfileCompleted) return RedirectToAction(nameof(Profile));
+
+            if (userProfileType == UserProfileType.Company)
+            {
+                userProfile.UserProfileType = userProfileType;
+
+                _userProfileService.Update(userProfile);
+
+                return RedirectToAction(nameof(Personalize));
+            }
+
+            _userProfileService.CompleteProfile(userProfile, userProfileType);
+
+            return RedirectToAction(nameof(Profile));
+        }
+
+        [CompanyUser(RequiresUserProfileComplete = false)]
+        public ActionResult Personalize()
+        {
+            var userProfile = _userProfileService.GetByUserId(User.Identity.GetUserId());
+
+            if (userProfile.IsProfileCompleted) return RedirectToAction(nameof(Profile));
+
+            if (userProfile.Company == null) userProfile.Company = new Company();
+
+            var viewModel = new PersonalizeCompanyInfoViewModel
+            {
+                UserProfileId = userProfile.Id,
+                Id = userProfile.Company.Id,
+                CompanyName = userProfile.Company.CompanyName,
+                CompanyUrl = userProfile.Company.CompanyUrl,
+                CompanyEmail = userProfile.Company.CompanyEmail,
+                CompanyLogoUrl = userProfile.Company.CompanyLogoUrl,
+                CompanyDescription = userProfile.Company.CompanyDescription,
+                CompanyPhone = userProfile.Company.CompanyPhone,
+                CompanyVideoUrl = userProfile.Company.CompanyVideoUrl,
+                FacebookProfile = userProfile.Company.FacebookProfile,
+                TwitterProfile = userProfile.Company.TwitterProfile,
+                InstagramProfile = userProfile.Company.InstagramProfile,
+                LinkedInProfile = userProfile.Company.LinkedInProfile,
+                YoutubeProfile = userProfile.Company.YoutubeProfile
+            };
+
+            return View(viewModel);
+        }
+
+        [CompanyUser(RequiresUserProfileComplete = false), HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Personalize(PersonalizeCompanyInfoViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model)
+                    .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
+
+            var userProfile = _userProfileService.GetByUserId(User.Identity.GetUserId());
+
+            userProfile.Company = model.ToEntity();
+            userProfile.IsProfileCompleted = true;
+            
+            _userProfileService.Update(userProfile);
+
+            return RedirectToAction(nameof(Profile));
         }
     }
 }

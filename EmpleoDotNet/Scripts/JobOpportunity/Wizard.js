@@ -1,8 +1,7 @@
 ﻿"use strict";
 
-var Wizard = function () {
+var Wizard = function (sections) {
     var currentSection = 0;
-    var sections = ["INFORMACIÓN DEL PUESTO", "LA PRUEBA DE JOEL"];
     var owl = $("#wizard").owlCarousel({
         slideSpeed: 300,
         paginationSpeed: 400,
@@ -85,13 +84,3 @@ var Wizard = function () {
         }
     };
 }
-
-$(function () {
-    var wizard = new Wizard();
-    $('form').submit(function (e) { wizard.submitForm(); });
-    $(window).keydown(function (e) { wizard.preventEnter(e); });
-    $("input").keydown(function (e) { wizard.goNextOnEnter(e); });
-    $(".btn-next").click(function () { wizard.next(); });
-    $(".btn-prev").click(function () { wizard.previous(); });
-    $('#validation-errors a').click(function () { wizard.focusField($(this).data('field')); });
-});

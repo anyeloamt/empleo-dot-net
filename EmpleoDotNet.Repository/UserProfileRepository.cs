@@ -20,7 +20,14 @@ namespace EmpleoDotNet.Repository
         {
             return DbSet
                 .Include(x => x.Company.JobOpportunities.Select(jo => jo.JobOpportunityLikes))
+                // TODO: Find what's going on with this.
+                .ToList()
                 .FirstOrDefault(x => x.UserId == userId);
+        }
+
+        public void Update(UserProfile userProfile)
+        {
+            Context.Entry(userProfile).State = EntityState.Modified;
         }
     }
 }

@@ -20,7 +20,6 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<IJobOpportunityRepository>().To<JobOpportunityRepository>();
             Kernel.Bind<ITagRepository>().To<TagRepository>();
-            Kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
 
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
             Kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
@@ -34,6 +33,9 @@ namespace EmpleoDotNet.App_Start
             Kernel.Bind<IJobOpportunityLikeService>().To<JobOpportunityLikeService>();
             Kernel.Bind<IJobOpportunityLikeRepository>().To<JobOpportunityLikeRepository>();
             Kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
+
+            Kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
+            Kernel.Bind<IUserProfileService>().To<UserProfileService>();
         }
     }
 }

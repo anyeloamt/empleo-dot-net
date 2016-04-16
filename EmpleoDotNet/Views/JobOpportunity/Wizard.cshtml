@@ -8,28 +8,7 @@
 
 @if (!Html.ViewData.ModelState.IsValid)
 {
-    <div class="container" id="validation-errors">
-        <div class='validation-summary-errors" panel panel-danger' data-valmsg-summary="true">
-            <div class="panel-heading">
-                Errores:
-            </div>
-            <div class="panel-body">
-                <ul>
-                    @foreach (var m in ViewData.ModelState)
-                    {
-                        if (m.Value.Errors.Any())
-                        {
-                            <li>
-                                <a href="javascript:void(0)" data-field="@m.Key" class="text-danger">
-                                    @m.Value.Errors.First().ErrorMessage
-                                </a>
-                            </li>
-                        }
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_ErrorListPartial")
 }
 
 <section class="wizard-container">
@@ -53,12 +32,12 @@
             <div class="item" data-parsley-group="job-details">
                 <div class="form-group" id="job-title-group">
                     @Html.LabelFor(m => m.Title)
-                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required = "" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required = "" })
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>
                 <div class="form-group" id="job-category-group">
                     @Html.LabelFor(m => m.Category)
-                        @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
+                    @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
                 </div>
                 <div class="form-group" id="job-category-group">
                     @Html.LabelFor(m => m.JobType)
@@ -84,7 +63,7 @@
                     @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })
-                        @Html.ValidationMessageFor(x => x.LocationName)
+                    @Html.ValidationMessageFor(x => x.LocationName)
                 </div>
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.IsRemote)
@@ -93,7 +72,7 @@
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Description)
-                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Description)
                         <span>
                             <b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de
@@ -203,6 +182,16 @@
                     $('#location-placeid').val('');
                 }
             });
+        });
+
+        $(function () {
+            var wizard = new Wizard(["INFORMACIÓN DEL PUESTO", "LA PRUEBA DE JOEL"]);
+            $('form').submit(function (e) { wizard.submitForm(); });
+            $(window).keydown(function (e) { wizard.preventEnter(e); });
+            $("input").keydown(function (e) { wizard.goNextOnEnter(e); });
+            $(".btn-next").click(function () { wizard.next(); });
+            $(".btn-prev").click(function () { wizard.previous(); });
+            $('#validation-errors a').click(function () { wizard.focusField($(this).data('field')); });
         });
     </script>
 }

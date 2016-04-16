@@ -17,6 +17,8 @@ namespace EmpleoDotNet.Filters
         [Inject]
         public IUserProfileRepository UserProfileRepository { private get; set; }
 
+        public bool RequiresUserProfileComplete { get; set; } = true;
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
@@ -25,9 +27,7 @@ namespace EmpleoDotNet.Filters
 
             if (!identity.IsAuthenticated)
             {
-                filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Account", action = "Login", returnUrl = filterContext.HttpContext.Request.Path }))
-                    .WithInfo("Debes iniciar sesión para acceder a esta sección.");
+                Redirect(filterContext, action: "Login");
 
                 return;
             }
@@ -36,11 +36,21 @@ namespace EmpleoDotNet.Filters
 
             if (userProfile.UserProfileType != UserProfileType.Company)
             {
-                // TODO: Redirect to page where the user converts its account to company type.
-                filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new { controller = "Home", action = "Index", returnUrl = filterContext.HttpContext.Request.Path }))
-                    .WithInfo("Sólo las empresas pueden acceder a esta sección, TODO: Complete this message.");
+                Redirect(filterContext);
+
+                return;
             }
+
+            if (!RequiresUserProfileComplete) return;
+
+            if (!userProfile.IsProfileCompleted) Redirect(filterContext);
+        }
+
+        private static void Redirect(ActionExecutingContext filterContext, string controller = "Account", string action = "Profile")
+        {
+            filterContext.Result = new RedirectToRouteResult(
+                new RouteValueDictionary(
+                    new { controller, action, returnUrl = filterContext.HttpContext.Request.Path }));
         }
     }
 }

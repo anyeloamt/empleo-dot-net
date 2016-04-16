@@ -8,7 +8,7 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-5 col-lg-5">
                     <div>
                         <h2>Mi perfil</h2>
                     </div>
@@ -31,29 +31,51 @@
 
                     </dl>
                 </div>
-            </div>
-            @if (Model.UserProfileType == UserProfileType.Company)
-            {
-                <div class="row">
-                    <div class="col-sm-12">
+                @if (!Model.IsProfileCompleted)
+                {
+                    <div class="col-md-7 col-lg-7 col-sm-12">
                         <div>
-                            <h2>Mis ofertas de empleo</h2>
+                            <h2>Información de usuario</h2>
                         </div>
-                        @if (Model.Company.JobOpportunities.Any())
+                        @using (Html.BeginForm("CompleteProfile", "Account", FormMethod.Post))
                         {
-                            @Html.Partial("_JobListPartial", Model.Company.JobOpportunities)
-                        }
-                        else
-                        {
-                            <span>No has creado una oferta de empleo, <a href="@Url.Action("Wizard","JobOpportunity")">comienza aquí</a></span>
+                            <div class="form-group">
+                                <label for="UserProfileType" class="control-label">Tipo de usuario</label>
+                                @Html.EnumDropDownListFor(x => x.UserProfileType, "-- Tipo de usuario --", new {@class = "form-control"})
+                                <span>Por favor especifica si representas una empresa o eres un candidato</span>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-lg btn-primary">
+                                    <i class="fa fa-check-circle"></i>
+                                    Continuar
+                                </button>
+                            </div>
                         }
                     </div>
-                </div>
-            }
-            else
+                }
+            </div>
+            @if (Model.IsProfileCompleted)
             {
-
+                if (Model.UserProfileType == UserProfileType.Company)
+                {
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div>
+                                <h2>Mis ofertas de empleo</h2>
+                            </div>
+                            @if (Model.Company.JobOpportunities.Any())
+                            {
+                                @Html.Partial("_JobListPartial", Model.Company.JobOpportunities)
+                            }
+                            else
+                            {
+                                <span>No has creado una oferta de empleo, <a href="@Url.Action("Wizard", "JobOpportunity")">comienza aquí</a></span>
+                            }
+                        </div>
+                    </div>
+                }
             }
         </div>
     </section>
- </div>
+
+</div>

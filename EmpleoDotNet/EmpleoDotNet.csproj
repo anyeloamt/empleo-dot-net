@@ -298,6 +298,7 @@
     <Compile Include="ViewModel\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModel\Account\PersonalizeCompanyInfoViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />
@@ -501,6 +502,8 @@
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\Personalize.cshtml" />
+    <Content Include="Views\Shared\_ErrorListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

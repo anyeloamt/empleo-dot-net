@@ -1,0 +1,150 @@
+﻿@model EmpleoDotNet.ViewModel.Account.PersonalizeCompanyInfoViewModel
+
+@{
+    ViewBag.Title = "Personalizar perfil";
+}
+@section styles{
+    <link href="~/Content/JobOpportunity/Wizard.css" rel="stylesheet" />
+}
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/parsley.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/i18n/parsley/es.js"></script>
+    <script type="text/javascript" src="~/Scripts/JobOpportunity/Wizard.js"></script>
+    <script>
+        $(function () {
+            var wizard = new Wizard(["INFORMACIÓN GENERAL", "INFORMACIÓN OPCIONAL"]);
+            $('form').submit(function (e) { wizard.submitForm(); });
+            $(window).keydown(function (e) { wizard.preventEnter(e); });
+            $("input").keydown(function (e) { wizard.goNextOnEnter(e); });
+            $(".btn-next").click(function () { wizard.next(); });
+            $(".btn-prev").click(function () { wizard.previous(); });
+            $('#validation-errors a').click(function () { wizard.focusField($(this).data('field')); });
+        });
+    </script>
+}
+
+@if (!Html.ViewData.ModelState.IsValid)
+{
+    @Html.Partial("_ErrorListPartial")
+}
+
+<div class="container">
+    <section>
+        @using (Html.BeginForm("Personalize", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.UserProfileId)
+            @Html.AntiForgeryToken()
+            <div>
+                <span class="h2 section-title"></span>
+                <hr class="hidden-xs" />
+                <div class="tab section-1">
+                    <span class="hidden-xs">1</span>
+                    <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 1 de 2</span>
+                </div>
+                <div class="tab section-2">
+                    <span class="hidden-xs">2</span>
+                    <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 2 de 2</span>
+                </div>
+            </div>
+            <div id="wizard" class="owl-carousel owl-theme">
+
+                <div class="item">
+                    <div class="form-group" id="company-name-group">
+                        @Html.LabelFor(m => m.CompanyName, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL.", required = "", @data_parsley_group = "business-details" })
+                        <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.CompanyName)
+                    </div>
+                    <div class="form-group" id="company-description-group">
+                        @Html.LabelFor(m => m.CompanyDescription, new { @class = "control-label" })
+                        @Html.TextAreaFor(m => m.CompanyDescription, new { @class = "form-control textarea", placeholder = "CompanyX, SRL.", @data_parsley_group = "business-details" })
+                        <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.CompanyDescription)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.CompanyEmail, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", type = "email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.CompanyEmail)
+                    </div>
+                    <div class="form-group" id="company-website-group">
+                        @Html.LabelFor(m => m.CompanyUrl, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
+                        <span>
+                            <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n
+                            como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web
+                            o crees que necesita unas mejoras, considera buscar un web developer en
+                            <a href="@Url.Action("Index", "Home")">emplea.do</a>
+                        </span>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.CompanyUrl)
+                    </div>
+                    <div class="form-group" id="company-logo-group">
+                        @Html.LabelFor(m => m.CompanyLogoUrl, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png" })
+                        <span>
+                            Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks.
+                            Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;
+                        </span>
+                        <br />
+                        @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                    </div>
+                    <a class="btn-next btn btn-primary btn-lg">
+                        Siguiente
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="item">
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.CompanyPhone, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyPhone, new { @class = "form-control", type = "phone", placeholder = "809-444-3322", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.CompanyPhone)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.CompanyVideoUrl, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.CompanyVideoUrl, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.CompanyVideoUrl)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.FacebookProfile, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.FacebookProfile, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.FacebookProfile)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.TwitterProfile, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.TwitterProfile, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.TwitterProfile)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.LinkedInProfile, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.LinkedInProfile, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.LinkedInProfile)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.InstagramProfile, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.InstagramProfile, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.InstagramProfile)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.YoutubeProfile, new { @class = "control-label" })
+                        @Html.TextBoxFor(m => m.YoutubeProfile, new { @class = "form-control", type = "url", placeholder = "www.youtube.com/watch?v=A5oyq", @data_parsley_group = "business-details" })
+                        @Html.ValidationMessageFor(m => m.YoutubeProfile)
+                    </div>
+                    <a class="btn-prev btn btn-warning btn-lg">
+                        <i class="fa fa-arrow-left"></i>
+                        Anterior
+                    </a>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fa fa-check"></i>
+                        Finalizar
+                    </button>
+                </div>
+            </div>
+        }
+
+    </section>
+
+</div>

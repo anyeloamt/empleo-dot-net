@@ -1,0 +1,22 @@
+﻿<div class="container" id="validation-errors">
+    <div class='validation-summary-errors" panel panel-danger' data-valmsg-summary="true">
+        <div class="panel-heading">
+            Errores:
+        </div>
+        <div class="panel-body">
+            <ul>
+                @foreach (var m in ViewData.ModelState)
+                {
+                    if (m.Value.Errors.Any())
+                    {
+                        <li>
+                            <a href="javascript:void(0)" data-field="@m.Key" class="text-danger">
+                                @m.Value.Errors.First().ErrorMessage
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
