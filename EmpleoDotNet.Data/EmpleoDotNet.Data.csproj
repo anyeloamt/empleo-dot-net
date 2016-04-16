@@ -129,17 +129,13 @@
     <Compile Include="Migrations\201603301645403_AddedHowToApplyField.Designer.cs">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604162012337_AddCompanyTable.cs" />
-    <Compile Include="Migrations\201604162012337_AddCompanyTable.Designer.cs">
-      <DependentUpon>201604162012337_AddCompanyTable.cs</DependentUpon>
+    <Compile Include="Migrations\201604162155164_AddCompanyTable.cs" />
+    <Compile Include="Migrations\201604162155164_AddCompanyTable.Designer.cs">
+      <DependentUpon>201604162155164_AddCompanyTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604162029421_RemoveCompanyPropertiesFromJobOpportunityTable.cs" />
-    <Compile Include="Migrations\201604162029421_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
-      <DependentUpon>201604162029421_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable.cs" />
-    <Compile Include="Migrations\201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable.Designer.cs">
-      <DependentUpon>201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable.cs</DependentUpon>
+    <Compile Include="Migrations\201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.cs" />
+    <Compile Include="Migrations\201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
+      <DependentUpon>201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,14 +194,11 @@
     <EmbeddedResource Include="Migrations\201603301645403_AddedHowToApplyField.resx">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604162012337_AddCompanyTable.resx">
-      <DependentUpon>201604162012337_AddCompanyTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604162155164_AddCompanyTable.resx">
+      <DependentUpon>201604162155164_AddCompanyTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604162029421_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
-      <DependentUpon>201604162029421_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable.resx">
-      <DependentUpon>201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
+      <DependentUpon>201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddProfileCompletedAndUserTypeToUserProfileTable : IMigrationMetadata
+    public sealed partial class RemoveCompanyPropertiesFromJobOpportunityTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddProfileCompletedAndUserTypeToUserProfileTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveCompanyPropertiesFromJobOpportunityTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604162032457_AddProfileCompletedAndUserTypeTOUserProfileTable"; }
+            get { return "201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable"; }
         }
         
         string IMigrationMetadata.Source

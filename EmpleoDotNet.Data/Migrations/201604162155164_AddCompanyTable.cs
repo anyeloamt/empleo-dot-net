@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Data.Migrations
                         CompanyDescription = c.String(),
                         CompanyPhone = c.String(maxLength: 60),
                         CompanyVideoUrl = c.String(),
-                        UserProfileId = c.Int(nullable: false),
+                        UserProfileId = c.Int(),
                         FacebookProfile = c.String(),
                         TwitterProfile = c.String(),
                         LinkedInProfile = c.String(),
@@ -28,12 +28,15 @@ namespace EmpleoDotNet.Data.Migrations
                         Created = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.CompanyId)
-                .ForeignKey("dbo.UserProfiles", t => t.UserProfileId, cascadeDelete: true)
+                .ForeignKey("dbo.UserProfiles", t => t.UserProfileId)
                 .Index(t => t.UserProfileId);
             
             AddColumn("dbo.JobOpportunities", "CompanyId", c => c.Int());
             CreateIndex("dbo.JobOpportunities", "CompanyId");
             AddForeignKey("dbo.JobOpportunities", "CompanyId", "dbo.Companies", "CompanyId");
+
+            // Copy company information from JobOpportunities to Companies table.
+            SqlFile(@"..\..\SqlScripts\empleado - move company info from JobOpportunity to Company table.sql");
         }
         
         public override void Down()
