@@ -3,7 +3,7 @@ namespace EmpleoDotNet.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddUserProfileType : DbMigration
+    public partial class AddProfileCompletedAndUserTypeToUserProfileTable : DbMigration
     {
         public override void Up()
         {

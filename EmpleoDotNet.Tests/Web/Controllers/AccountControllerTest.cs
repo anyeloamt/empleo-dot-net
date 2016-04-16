@@ -26,6 +26,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
     {
         private IAuthenticationService _authenticationService;
         private IUserProfileRepository _userProfileRepository;
+        private IUserProfileService _userProfileService;
         private IUserStore<IdentityUser> _userStore;
         private UserManager<IdentityUser> _userManager;
         private AccountController _sut;
@@ -35,9 +36,10 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             this._authenticationService = Substitute.For<IAuthenticationService>();
             this._userProfileRepository = Substitute.For<IUserProfileRepository>();
+            this._userProfileService = Substitute.For<IUserProfileService>();
             this._userStore = Substitute.For<IUserStore<IdentityUser>>();
             this._userManager = Substitute.For<UserManager<IdentityUser>>(_userStore);
-            _sut = new AccountController(_authenticationService, _userProfileRepository, _userManager);
+            _sut = new AccountController(_authenticationService, _userProfileService, _userManager);
             _sut.ControllerContext = GenerateControllerContext(_sut);
         }
 

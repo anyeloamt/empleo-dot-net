@@ -249,24 +249,24 @@ namespace EmpleoDotNet.Controllers
 
             if (userProfile.IsProfileCompleted) return RedirectToAction(nameof(Profile));
 
-            if (userProfile.Company == null) userProfile.Company = new Company();
+            var company = userProfile.Companies.FirstOrDefault() ?? new Company();
 
             var viewModel = new PersonalizeCompanyInfoViewModel
             {
                 UserProfileId = userProfile.Id,
-                Id = userProfile.Company.Id,
-                CompanyName = userProfile.Company.CompanyName,
-                CompanyUrl = userProfile.Company.CompanyUrl,
-                CompanyEmail = userProfile.Company.CompanyEmail,
-                CompanyLogoUrl = userProfile.Company.CompanyLogoUrl,
-                CompanyDescription = userProfile.Company.CompanyDescription,
-                CompanyPhone = userProfile.Company.CompanyPhone,
-                CompanyVideoUrl = userProfile.Company.CompanyVideoUrl,
-                FacebookProfile = userProfile.Company.FacebookProfile,
-                TwitterProfile = userProfile.Company.TwitterProfile,
-                InstagramProfile = userProfile.Company.InstagramProfile,
-                LinkedInProfile = userProfile.Company.LinkedInProfile,
-                YoutubeProfile = userProfile.Company.YoutubeProfile
+                Id = company.Id,
+                CompanyName = company.CompanyName,
+                CompanyUrl = company.CompanyUrl,
+                CompanyEmail = company.CompanyEmail,
+                CompanyLogoUrl = company.CompanyLogoUrl,
+                CompanyDescription = company.CompanyDescription,
+                CompanyPhone = company.CompanyPhone,
+                CompanyVideoUrl = company.CompanyVideoUrl,
+                FacebookProfile = company.FacebookProfile,
+                TwitterProfile = company.TwitterProfile,
+                InstagramProfile = company.InstagramProfile,
+                LinkedInProfile = company.LinkedInProfile,
+                YoutubeProfile = company.YoutubeProfile
             };
 
             return View(viewModel);
@@ -280,11 +280,10 @@ namespace EmpleoDotNet.Controllers
                     .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
 
             var userProfile = _userProfileService.GetByUserId(User.Identity.GetUserId());
-
-            userProfile.Company = model.ToEntity();
-            userProfile.IsProfileCompleted = true;
             
-            _userProfileService.Update(userProfile);
+            userProfile.Companies.Add(model.ToEntity());
+
+            _userProfileService.CompleteProfile(userProfile, UserProfileType.Company);
 
             return RedirectToAction(nameof(Profile));
         }

@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddUserProfileType : IMigrationMetadata
+    public sealed partial class AddCompanyTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUserProfileType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCompanyTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604151902394_AddUserProfileType"; }
+            get { return "201604162012337_AddCompanyTable"; }
         }
         
         string IMigrationMetadata.Source

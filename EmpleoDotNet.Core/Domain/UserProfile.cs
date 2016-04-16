@@ -14,6 +14,6 @@ namespace EmpleoDotNet.Core.Domain
         public bool IsProfileCompleted { get; set; }
 
         public UserProfileType UserProfileType { get; set; }
-        public Company Company { get; set; }
+        public List<Company> Companies { get; set; }
     }
 }

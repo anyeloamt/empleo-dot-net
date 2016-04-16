@@ -23,9 +23,6 @@ namespace EmpleoDotNet.Data.TableConfigurations
             Property(x => x.InstagramProfile).IsOptional();
             Property(x => x.YoutubeProfile).IsOptional();
             Property(x => x.UserProfileId).IsRequired();
-
-            // Configure one to one relationship
-            HasRequired(x => x.UserProfile).WithOptional(x => x.Company);
         }
     }
 }

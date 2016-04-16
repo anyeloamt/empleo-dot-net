@@ -28,8 +28,8 @@ namespace EmpleoDotNet.Data.Migrations
                         Created = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.CompanyId)
-                .ForeignKey("dbo.UserProfiles", t => t.CompanyId)
-                .Index(t => t.CompanyId);
+                .ForeignKey("dbo.UserProfiles", t => t.UserProfileId, cascadeDelete: true)
+                .Index(t => t.UserProfileId);
             
             AddColumn("dbo.JobOpportunities", "CompanyId", c => c.Int());
             CreateIndex("dbo.JobOpportunities", "CompanyId");
@@ -38,10 +38,10 @@ namespace EmpleoDotNet.Data.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Companies", "CompanyId", "dbo.UserProfiles");
+            DropForeignKey("dbo.Companies", "UserProfileId", "dbo.UserProfiles");
             DropForeignKey("dbo.JobOpportunities", "CompanyId", "dbo.Companies");
             DropIndex("dbo.JobOpportunities", new[] { "CompanyId" });
-            DropIndex("dbo.Companies", new[] { "CompanyId" });
+            DropIndex("dbo.Companies", new[] { "UserProfileId" });
             DropColumn("dbo.JobOpportunities", "CompanyId");
             DropTable("dbo.Companies");
         }

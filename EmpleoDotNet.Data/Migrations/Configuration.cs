@@ -321,9 +321,9 @@ namespace EmpleoDotNet.Data.Migrations
                     Name = "Programming",
                     Created = DateTime.Now
                 },
-            }; 
-              
-            tagList.ForEach(tags => context.Tags.AddOrUpdate(a=>a.Name, tags));
+            };
+
+            tagList.ForEach(tags => context.Tags.AddOrUpdate(a => a.Name, tags));
             #endregion
 #endif
         }
