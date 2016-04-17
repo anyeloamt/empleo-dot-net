@@ -36,6 +36,9 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
             Kernel.Bind<IUserProfileService>().To<UserProfileService>();
+
+            Kernel.Bind<EmpleadoForFilterContext>().ToSelf().InTransientScope();
+            Kernel.Bind<IUserProfileForFiltersRepository>().To<UserProfileForFiltersRepository>();
         }
     }
 }

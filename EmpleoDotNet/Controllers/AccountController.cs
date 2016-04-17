@@ -272,7 +272,9 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
-        [CompanyUser(RequiresUserProfileComplete = false), HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        [CompanyUser(RequiresUserProfileComplete = false)]
         public ActionResult Personalize(PersonalizeCompanyInfoViewModel model)
         {
             if (!ModelState.IsValid)

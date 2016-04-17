@@ -15,7 +15,7 @@ namespace EmpleoDotNet.Filters
     public class CompanyUserAttribute : ActionFilterAttribute
     {
         [Inject]
-        public IUserProfileRepository UserProfileRepository { private get; set; }
+        public IUserProfileForFiltersRepository UserProfileRepository { private get; set; }
 
         public bool RequiresUserProfileComplete { get; set; } = true;
 

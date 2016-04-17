@@ -137,6 +137,10 @@
     <Compile Include="Migrations\201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.Designer.cs">
       <DependentUpon>201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604171559238_AddUserProfileTypeAndProfileCompletedPropertiesToUserProfileTable.cs" />
+    <Compile Include="Migrations\201604171559238_AddUserProfileTypeAndProfileCompletedPropertiesToUserProfileTable.Designer.cs">
+      <DependentUpon>201604171559238_AddUserProfileTypeAndProfileCompletedPropertiesToUserProfileTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -199,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.resx">
       <DependentUpon>201604162202034_RemoveCompanyPropertiesFromJobOpportunityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604171559238_AddUserProfileTypeAndProfileCompletedPropertiesToUserProfileTable.resx">
+      <DependentUpon>201604171559238_AddUserProfileTypeAndProfileCompletedPropertiesToUserProfileTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
