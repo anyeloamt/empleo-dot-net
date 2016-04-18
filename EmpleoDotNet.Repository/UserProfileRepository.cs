@@ -20,6 +20,7 @@ namespace EmpleoDotNet.Repository
         {
             return DbSet
                 .Include(x => x.Companies.Select(c => c.JobOpportunities.Select(s => s.JobOpportunityLikes)))
+                .Include(x => x.Companies.Select(c => c.JobOpportunities.Select(s => s.JobOpportunityLocation)))
                 .FirstOrDefault(x => x.UserId == userId);
         }
 

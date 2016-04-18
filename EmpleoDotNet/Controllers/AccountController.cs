@@ -247,8 +247,6 @@ namespace EmpleoDotNet.Controllers
         {
             var userProfile = _userProfileService.GetByUserId(User.Identity.GetUserId());
 
-            if (userProfile.IsProfileCompleted) return RedirectToAction(nameof(Profile));
-
             var company = userProfile.Companies.FirstOrDefault() ?? new Company();
 
             var viewModel = new PersonalizeCompanyInfoViewModel
