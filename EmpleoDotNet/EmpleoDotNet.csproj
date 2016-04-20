@@ -299,6 +299,7 @@
     <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\PersonalizeCompanyInfoViewModel.cs" />
+    <Compile Include="ViewModel\Account\UserProfileViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />

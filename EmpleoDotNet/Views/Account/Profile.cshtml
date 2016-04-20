@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.Core.Domain
-@model EmpleoDotNet.Core.Domain.UserProfile
+@model EmpleoDotNet.ViewModel.Account.UserProfileViewModel
 
 @{
     ViewBag.Title = "Mi perfil";
@@ -62,6 +62,103 @@
                                 <h2>Información de mi empresa</h2>
                             </div>
 
+                            <div class="panel panel-default">
+                                <div class="panel-image">
+                                    @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
+                                    {
+                                        <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañ&iacute;a" class="panel-image-preview" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Model.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="panel-image-preview">
+                                    }
+                                </div>
+                                <div class="panel-body">
+                                    <h4>@Model.CompanyName</h4>
+                                    <article>
+                                        @Html.Raw(Model.CompanyDescription)
+                                    </article>
+
+                                    @if (!string.IsNullOrWhiteSpace(Model.CompanyVideoUrl))
+                                    {
+                                        <div>
+                                            <strong>@Html.DisplayNameFor(x => x.CompanyVideoUrl)</strong>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe src="@Model.CompanyVideoUrl" frameborder="0" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <h3>Información de contacto</h3>
+                                    <dl>
+                                        <dt>
+                                            @Html.DisplayNameFor(x => x.CompanyUrl)
+                                        </dt>
+                                        <dd>
+                                            @if (string.IsNullOrWhiteSpace(Model.CompanyUrl))
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Html.DisplayFor(x => x.CompanyUrl)">
+                                                    @Html.DisplayFor(x => x.CompanyUrl)
+                                                </a>
+                                            }
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(x => x.CompanyPhone)
+                                        </dt>
+                                        <dd>
+                                            @if (string.IsNullOrWhiteSpace(Model.CompanyPhone))
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                            else
+                                            {
+                                                <a href="tel:@Html.DisplayFor(x => x.CompanyPhone)">
+                                                    @Html.DisplayFor(x => x.CompanyPhone)
+                                                </a>
+                                            }
+                                        </dd>
+                                        <dt>
+                                            @Html.DisplayNameFor(x => x.CompanyEmail)
+                                        </dt>
+                                        <dd>
+                                            @if (string.IsNullOrWhiteSpace(Model.CompanyEmail))
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                            else
+                                            {
+                                                <a href="mailto:@Html.DisplayFor(x => x.CompanyEmail)">
+                                                    @Html.DisplayFor(x => x.CompanyEmail)
+                                                </a>
+                                            }
+                                        </dd>
+                                    </dl>
+                                </div>
+
+                                <div class="panel-footer text-center">
+                                    <a href="@(string.IsNullOrWhiteSpace(Model.FacebookProfile) ? "#" : Model.FacebookProfile)">
+                                        <span class="fa fa-2x fa-facebook-square"></span>
+                                    </a>
+                                    <a href="@(string.IsNullOrWhiteSpace(Model.InstagramProfile) ? "#" : Model.InstagramProfile)">
+                                        <span class="fa fa-2x fa-instagram"></span>
+                                    </a>
+                                    <a href="@(string.IsNullOrWhiteSpace(Model.LinkedInProfile) ? "#" : Model.LinkedInProfile)">
+                                        <span class="fa fa-2x fa-linkedin-square"></span>
+                                    </a>
+                                    <a href="@(string.IsNullOrWhiteSpace(Model.TwitterProfile) ? "#" : Model.TwitterProfile)">
+                                        <span class="fa fa-2x fa-twitter-square"></span>
+                                    </a>
+                                    <a href="@(string.IsNullOrWhiteSpace(Model.YoutubeProfile) ? "#" : Model.YoutubeProfile)">
+                                        <span class="fa fa-2x fa-youtube-square"></span>
+                                    </a>
+                                </div>
+                            </div>
+
+
                         </div>
                     }
                 }
@@ -75,9 +172,9 @@
                             <div>
                                 <h2>Mis ofertas de empleo</h2>
                             </div>
-                            @if (Model.Companies.Any(c => c.JobOpportunities.Any()))
+                            @if (Model.JobOpportunities.Any())
                             {
-                                @Html.Partial("_JobListPartial", Model.Companies.SelectMany(c => c.JobOpportunities))
+                                @Html.Partial("_JobListPartial", Model.JobOpportunities)
                             }
                             else
                             {

@@ -47,7 +47,7 @@ namespace EmpleoDotNet.ViewModel.Account
         public string FacebookProfile { get; set; }
 
         [StringLength(int.MaxValue), Url(ErrorMessage = "El perfil de Tiwtter debe ser un Url válido.")]
-        [Display(Name = "Perfil de Tiwtter (opcional)")]
+        [Display(Name = "Perfil de Twitter (opcional)")]
         public string TwitterProfile { get; set; }
 
         [StringLength(int.MaxValue), Url(ErrorMessage = "El perfil de LinkedIn debe ser un Url válido.")]

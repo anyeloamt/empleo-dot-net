@@ -218,7 +218,9 @@ namespace EmpleoDotNet.Controllers
         {
             var user = _userProfileService.GetByUserId(this.User.Identity.GetUserId());
 
-            return View(user);
+            var viewModel = UserProfileViewModel.FromModel(user);
+
+            return View(viewModel);
         }
 
         [HttpPost]
